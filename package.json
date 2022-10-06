@@ -1,9 +1,14 @@
 {
     "name": "svelte-partial-stores",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "derived stores for watching part of a svelte store",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/jacobzwang/svelte-partial-stores.git"
+    },
+    "homepage": "https://github.com/jacobzwang/svelte-partial-stores.git",
     "scripts": {
         "build": "tsc",
         "prepare": "npm run build"
