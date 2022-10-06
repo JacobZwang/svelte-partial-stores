@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "module": "esnext",
+        "target": "es2017",
+        "declaration": true,
+        "outDir": "./lib",
+        "strict": true,
+        "moduleResolution": "NodeNext"
+    },
+    "include": ["src"],
+    "exclude": ["node_modules"]
+}
