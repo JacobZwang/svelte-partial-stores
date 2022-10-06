@@ -2,9 +2,9 @@ import { derived, type Readable, type Writable } from 'svelte/store';
 import { DeepPartial, IntoBooleans } from '../types.js';
 import isObject from '../utils/isObject.js';
 
-export function triggered<T extends Record<string, unknown>>(
+export function triggered<T extends Record<string, unknown> | undefined>(
     store: Readable<T> | Writable<T>,
-    trigger: boolean | DeepPartial<IntoBooleans<T>>
+    trigger: boolean | DeepPartial<IntoBooleans<Required<T>>>
 ): Readable<T> {
     const last: Record<string, unknown> = {};
 
@@ -13,7 +13,7 @@ export function triggered<T extends Record<string, unknown>>(
 
         (function detectChange(
             trigger: Record<string, unknown | boolean> | boolean,
-            current: Record<string, unknown>,
+            current: Record<string, unknown> = {},
             last: Record<string, unknown>
         ) {
             for (const [k, v] of Object.entries(trigger)) {
@@ -30,7 +30,7 @@ export function triggered<T extends Record<string, unknown>>(
                     }
                 }
 
-                if (v) {
+                if (v && current) {
                     last[k] ??= {};
                     //@ts-expect-error: TODO
                     detectChange(v, current[k], last[k]);
